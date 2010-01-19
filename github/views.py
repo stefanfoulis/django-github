@@ -73,7 +73,7 @@ def github_hook(request, secret_key):
         raise Http404
     if request.method == 'POST':
         try:
-            data = simplejson.loads(request.POST)
+            data = simplejson.loads(request.POST['payload'])
             repo = data['repository']['name']
             project = Project.objects.get(github_repo=repo)
             project.fetch_github()
