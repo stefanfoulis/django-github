@@ -7,8 +7,9 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from github.libs.github import GithubAPI
 
-GITHUB_LOGIN = getattr(settings, 'GITHUB_LOGIN', 'coleifer')
+GITHUB_LOGIN = getattr(settings, 'GITHUB_LOGIN', '')
 GITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')
+GITHUB_FETCH_BLOBS = getattr(settings, 'GITHUB_FETCH_BLOBS', True)
 github_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)
 
 class Project(models.Model):
@@ -75,7 +76,7 @@ class Project(models.Model):
                 commits_processed.append(instance)
         
         # download the *latest* tree if new commits exist
-        if len(commits_processed):        
+        if len(commits_processed) and GITHUB_FETCH_BLOBS:        
             commit = commits_processed[0]
             commit.fetch_blobs()
         

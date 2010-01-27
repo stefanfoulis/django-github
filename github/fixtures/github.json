@@ -1,0 +1,507 @@
+[
+  {
+    "pk": 1, 
+    "model": "github.project", 
+    "fields": {
+      "description": "Fetch stuff", 
+      "github_repo": "django-github", 
+      "created": "2010-01-26 21:19:14", 
+      "slug": "django-github", 
+      "title": "Django GitHub"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "github.commit", 
+    "fields": {
+      "name": "Charles Leifer", 
+      "created": "2010-01-18 21:04:12", 
+      "url": "http://github.com/coleifer/django-github/commit/ba4ce977a5e12bb4eca31cc06c136d67bd50f5d9", 
+      "tree": "29073b0c6239ca61484d2f44c9f7d82c7e75c1bf", 
+      "project": 1, 
+      "sha": "ba4ce977a5e12bb4eca31cc06c136d67bd50f5d9", 
+      "message": "Fixed the github_hook view - now looks at POST['payload'] instead of POST"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "github.commit", 
+    "fields": {
+      "name": "Charles Leifer", 
+      "created": "2010-01-09 12:42:06", 
+      "url": "http://github.com/coleifer/django-github/commit/a7277ce0ad32f0f7c888fb6cfaf15bfa30611456", 
+      "tree": "dcd4a2cd5d889e07abb1dfdeba79dfc054b237c2", 
+      "project": 1, 
+      "sha": "a7277ce0ad32f0f7c888fb6cfaf15bfa30611456", 
+      "message": "Management command for fetching repos"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "github.commit", 
+    "fields": {
+      "name": "Charles", 
+      "created": "2010-01-09 10:49:56", 
+      "url": "http://github.com/coleifer/django-github/commit/48e807bfaacbb2d2666feeeac6be0ce91d2ca11d", 
+      "tree": "0dd97c122805be3159edc593a6c36f6fac0cf70c", 
+      "project": 1, 
+      "sha": "48e807bfaacbb2d2666feeeac6be0ce91d2ca11d", 
+      "message": "Cleaned up admin.py, added installation instructions and added a TODO file."
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "github.commit", 
+    "fields": {
+      "name": "Charles Leifer", 
+      "created": "2010-01-08 23:38:38", 
+      "url": "http://github.com/coleifer/django-github/commit/62ad6706fdce364e6e93b215552b06bccb7422f0", 
+      "tree": "110836bb7066bfa80e259df46436ac2699140786", 
+      "project": 1, 
+      "sha": "62ad6706fdce364e6e93b215552b06bccb7422f0", 
+      "message": "Added setup.py and license."
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "github.commit", 
+    "fields": {
+      "name": "Charles Leifer", 
+      "created": "2010-01-08 23:31:06", 
+      "url": "http://github.com/coleifer/django-github/commit/3f640ab88d4cb5714c5a594ac72d3656fc1c61cd", 
+      "tree": "4339c490a54c32762c1fd2ad2ead81780cf36037", 
+      "project": 1, 
+      "sha": "3f640ab88d4cb5714c5a594ac72d3656fc1c61cd", 
+      "message": "Initial commit"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "LICENSE", 
+      "sha": "2a45da68a1d391c9b7eaeb7f03c7361a7e8b46da", 
+      "path": "LICENSE", 
+      "commit": 1, 
+      "data": "Copyright (c) 2009-2010 Charles Leifer\nAll rights reserved.\n \nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n \nRedistributions of source code must retain the above copyright notice, this list\nof conditions and the following disclaimer.\nRedistributions in binary form must reproduce the above copyright notice, this\nlist of conditions and the following disclaimer in the documentation and/or\nother materials provided with the distribution.\nNeither the name of the django-github nor the names of its contributors may be\nused to endorse or promote products derived from this software without specific\nprior written permission.\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n", 
+      "mime_type": "text/plain", 
+      "size": 1475
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "README.rst", 
+      "sha": "ed52f4d588a69b3dcd8d02dcf6006e1d81a165f8", 
+      "path": "README.rst", 
+      "commit": 1, 
+      "data": "=============\ndjango-github\n=============\n\nSimple django integration with GitHub's v2 API.\n\nInstallation\n------------\n\n`python setup.py install`\n\nOR\n\nput the ``github`` folder on your python-path\n", 
+      "mime_type": "text/prs.fallenstein.rst", 
+      "size": 196
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "TODO.rst", 
+      "sha": "eccc7fa1372269fedeb3f6a9e214ffbae12c8cdf", 
+      "path": "TODO.rst", 
+      "commit": 1, 
+      "data": "Todo\n====\n\n* write tests\n", 
+      "mime_type": "text/prs.fallenstein.rst", 
+      "size": 25
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "example", 
+      "sha": "", 
+      "path": "example", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "__init__.py", 
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", 
+      "path": "example/__init__.py", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "text/plain", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "example.db", 
+      "sha": "", 
+      "path": "example/example.db", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "manage.py", 
+      "sha": "5e78ea979ea3846a4602f604e265fc4666beffac", 
+      "path": "example/manage.py", 
+      "commit": 1, 
+      "data": "#!/usr/bin/env python\nfrom django.core.management import execute_manager\ntry:\n    import settings # Assumed to be in the same directory.\nexcept ImportError:\n    import sys\n    sys.stderr.write(\"Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\\nYou'll have to run django-admin.py, passing it your settings module.\\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\\n\" % __file__)\n    sys.exit(1)\n\nif __name__ == \"__main__\":\n    execute_manager(settings)\n", 
+      "mime_type": "text/plain", 
+      "size": 546
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "settings.py", 
+      "sha": "b94b1128f167e60fcfcfbf4f939c701c014cdb8a", 
+      "path": "example/settings.py", 
+      "commit": 1, 
+      "data": "# Django settings for example project.\nimport os\n\nDEBUG = True\nTEMPLATE_DEBUG = DEBUG\n\nADMINS = (\n    # ('Your Name', 'your_email@domain.com'),\n)\n\nMANAGERS = ADMINS\nSITE_DIR = os.path.dirname(__file__)\n\nDATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.\nDATABASE_NAME = '%s/example.db' % SITE_DIR             # Or path to database file if using sqlite3.\nDATABASE_USER = ''             # Not used with sqlite3.\nDATABASE_PASSWORD = ''         # Not used with sqlite3.\nDATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.\nDATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.\n\n# Local time zone for this installation. Choices can be found here:\n# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name\n# although not all choices may be available on all operating systems.\n# If running in a Windows environment this must be set to the same as your\n# system time zone.\nTIME_ZONE = 'America/Chicago'\n\n# Language code for this installation. All choices can be found here:\n# http://www.i18nguy.com/unicode/language-identifiers.html\nLANGUAGE_CODE = 'en-us'\n\nSITE_ID = 1\n\n# If you set this to False, Django will make some optimizations so as not\n# to load the internationalization machinery.\nUSE_I18N = True\n\n# Absolute path to the directory that holds media.\n# Example: \"/home/media/media.lawrence.com/\"\nMEDIA_ROOT = ''\n\n# URL that handles the media served from MEDIA_ROOT. Make sure to use a\n# trailing slash if there is a path component (optional in other cases).\n# Examples: \"http://media.lawrence.com\", \"http://example.com/media/\"\nMEDIA_URL = ''\n\n# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a\n# trailing slash.\n# Examples: \"http://foo.com/media/\", \"/media/\".\nADMIN_MEDIA_PREFIX = '/media/'\n\n# Make this unique, and don't share it with anybody.\nSECRET_KEY = 'mgnh*^h-2o%9)gqovm*xuu*))*daeolq21lvfxoo_z2g&*x-@7'\n\n# List of callables that know how to import templates from various sources.\nTEMPLATE_LOADERS = (\n    'django.template.loaders.filesystem.load_template_source',\n    'django.template.loaders.app_directories.load_template_source',\n#     'django.template.loaders.eggs.load_template_source',\n)\n\nMIDDLEWARE_CLASSES = (\n    'django.middleware.common.CommonMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n)\n\nROOT_URLCONF = 'example.urls'\n\nTEMPLATE_DIRS = (\n    \"%s/templates/\" % SITE_DIR,\n)\n\nINSTALLED_APPS = (\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.sites',\n    'github',\n)\n", 
+      "mime_type": "text/plain", 
+      "size": 2725
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "urls.py", 
+      "sha": "8e401c152f820a4be4f8427a55ee15abee93a320", 
+      "path": "example/urls.py", 
+      "commit": 1, 
+      "data": "from django.conf.urls.defaults import *\nfrom django.contrib import admin\n\nadmin.autodiscover()\n\nurlpatterns = patterns('',\n    (r'^projects/', include('github.urls')),\n    (r'^admin/', include(admin.site.urls)),\n)\n", 
+      "mime_type": "text/plain", 
+      "size": 214
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "github", 
+      "sha": "", 
+      "path": "github", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "__init__.py", 
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", 
+      "path": "github/__init__.py", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "text/plain", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "admin.py", 
+      "sha": "c767236c6f8109956366415fb74041a4dad8b4db", 
+      "path": "github/admin.py", 
+      "commit": 1, 
+      "data": "from django.contrib import admin\nfrom github.models import Project, Blob, Commit\n\nclass ProjectAdmin(admin.ModelAdmin):\n    list_display = ('title', 'github_repo',)\n    list_filter   = ('created',)\n    search_fields = ('title', 'description')\n    \n    actions = ['fetch_github']\n    \n    def fetch_github(self, request, queryset):\n        updated = []\n        for project in queryset:\n            if project.fetch_github():\n                updated.append(project.title)\n        self.message_user(request, \"%s successfully updated.\" % ', '.join(updated))\n    fetch_github.short_description = 'Fetch from Github'\n\nclass CommitAdmin(admin.ModelAdmin):\n    list_display = ('project', 'name', 'sha', 'created')\n    list_filter = ('created',)\n    actions = ['fetch_github', 'fetch_blobs']\n\n    def fetch_github(self, request, queryset):\n        fetched = []\n        for commit in queryset:\n            if commit.fetch_github():\n                fetched.append(commit.sha)\n        self.message_user(request, 'Successfully fetched %s' % (', '.join(fetched)))\n    fetch_github.short_description = 'Fetch commit data'\n\n    def fetch_blobs(self, request, queryset):\n        fetched = []\n        for commit in queryset:\n            if commit.fetch_blobs():\n                fetched.append(commit.sha)\n        self.message_user(request, 'Successfully fetched blobs for %s' % (', '.join(fetched)))\n    fetch_blobs.short_description = 'Fetch blobs for commits'\n\nclass BlobAdmin(admin.ModelAdmin):\n    pass\n\nadmin.site.register(Project, ProjectAdmin)\nadmin.site.register(Commit, CommitAdmin)\nadmin.site.register(Blob, BlobAdmin)\n", 
+      "mime_type": "text/plain", 
+      "size": 1611
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "libs", 
+      "sha": "", 
+      "path": "github/libs", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "__init__.py", 
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", 
+      "path": "github/libs/__init__.py", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "text/plain", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "github.py", 
+      "sha": "665dd147fda44dc236bc2dfb2c72ea9eb8695afa", 
+      "path": "github/libs/github.py", 
+      "commit": 1, 
+      "data": "try:\n    import simplejson\nexcept ImportError:\n    import json as simplejson\nimport datetime\nimport httplib2\nimport re\nimport socket\nimport time\nfrom urllib import urlencode, quote\n\nclass GithubAPI(object):\n    \"\"\"\n    A simple library for interacting with Github's v2 api\n    \n    Supported methods:\n    - get_user(username)\n    - authenticate()\n    - followers(username)\n    - following(username)\n    - watching(username)\n    - get_repo(username, repo)\n    - get_repos(username)\n    - get_commits(username, repo, [branch])\n    - get_commit(username, repo, sha)\n    - get_tree(username, repo, sha)\n    - get_blob(username, repo, sha, file_path)\n    - create_gist(name, data, extension)\n    - get_gist(gist_id)\n    \"\"\"\n    _fetched = 0\n    \n    def __init__(self, username=None, token=None):\n        self.username = username\n        self.token = token\n    \n    def raw_api_call(self, url, parameters={}, http_method=\"GET\", max_timeout=4):\n        \"\"\"\n        Make an API Call to GitHub\n        \"\"\"\n        # limit to 1 call per 1.15 seconds\n        if time.time() - self._fetched <= 1.15:\n            time.sleep(1.15 - (time.time() - self._fetched))\n        self._fetched = time.time()\n        \n        sock = httplib2.Http(timeout=max_timeout)\n        \n        request_headers = { 'User-Agent': 'Python-httplib2' }\n        \n        parameters.update({ 'username': self.username,\n                            'token': self.token })\n        \n        if http_method == 'POST':\n            post_data = urlencode(parameters)\n        elif parameters:\n            url += '?%s' % urlencode(parameters)\n\n        try:\n            if http_method == 'POST':\n                headers, response = sock.request(url, \"POST\", post_data, headers=request_headers)\n            else:\n                headers, response = sock.request(url)\n        except socket.timeout:\n            raise ValueError('Socket timed out')\n                \n        status = int(headers.pop('status', 200))\n        if status != 200:\n            raise ValueError('Returned status: %s' % (status))\n        \n        try:\n            processed_response = simplejson.loads(response)\n        except ValueError, e:\n            raise ValueError('Error in data from GitHub API: %s' % e.message)\n    \n        return processed_response\n    \n    def process_user(self, json_data):\n        return GithubAPIUser(json_data['user'])\n    \n    def process_users(self, json_data):\n        return json_data['users']\n       \n    def process_repo_data(self, json_data):\n        return GithubAPIRepo(json_data)\n    \n    def process_repo(self, json_data):\n        return self.process_repo_data(json_data['repository'])\n    \n    def process_repos(self, json_data):\n        return [self.process_repo_data(repo) for repo in json_data['repositories']]\n    \n    def process_commit_data(self, json_data):\n        return GithubAPICommit(json_data)\n    \n    def process_commit(self, json_data):\n        return self.process_commit_data(json_data['commit'])\n    \n    def process_commits(self, json_data):\n        return [self.process_commit_data(commit) for commit in json_data['commits']]\n    \n    def process_tree_data(self, json_data):\n        return [GithubAPIObject(obj) for obj in json_data['tree']]\n    \n    def process_blob_data(self, json_data):\n        return GithubAPIBlob(json_data['blob'])\n    \n    def api_call(self, url, processor, http_method=\"GET\", params={}, optional_params={}):\n        \"\"\"\n        Thin wrapper for raw_api_call - fails silently\n        \"\"\"\n        for (key, value) in optional_params.items():\n            if not params.has_key(key):\n                params[key] = value\n        \n        try:\n            json_data = self.raw_api_call(url, parameters=params, http_method=http_method)\n        except:\n            return False\n        \n        return processor(json_data)\n    \n    def get_user(self, username, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/user/show/%s' % (username),\n            processor=self.process_user,\n            optional_params=optional_params\n        )\n    \n    def authenticate(self, optional_params={}):\n        return self.get_user(self.username)\n    \n    def followers(self, username, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/user/show/%s/followers' % (username),\n            processor=self.process_users,\n            optional_params=optional_params\n        )\n    \n    def following(self, username, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/user/show/%s/following' % (username),\n            processor=self.process_users,\n            optional_params=optional_params\n        )\n    \n    def watching(self, username, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/repos/watched/%s/' % (username),\n            processor=self.process_repos,\n            optional_params=optional_params\n        )\n    \n    def get_repo(self, username, repo, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/repos/show/%s/%s' % (username, repo),\n            processor=self.process_repo,\n            optional_params=optional_params\n        )\n    \n    def get_repos(self, username, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/repos/show/%s/' % (username),\n            processor=self.process_repos,\n            optional_params=optional_params\n        )\n    \n    def get_commits(self, username, repo, branch='master', file_path=None, optional_params={}):\n        url = 'http://github.com/api/v2/json/commits/list/%s/%s/%s' % (username, repo, branch)\n        if file_path:\n            url='%s/%s' % (url, file_path)\n        return self.api_call(\n            url=url,\n            processor=self.process_commits,\n            optional_params=optional_params\n        )\n    \n    def get_commit(self, username, repo, sha, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/commits/show/%s/%s/%s' % (username, repo, sha),\n            processor=self.process_commit,\n            optional_params=optional_params\n        )\n    \n    def get_tree(self, username, repo, sha, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/tree/show/%s/%s/%s' % (username, repo, sha),\n            processor=self.process_tree_data,\n            optional_params=optional_params\n        )\n    \n    def get_blob(self, username, repo, sha, file_path, optional_params={}):\n        return self.api_call(\n            url='http://github.com/api/v2/json/blob/show/%s/%s/%s/%s' % (username, repo, sha, file_path),\n            processor=self.process_blob_data,\n            optional_params=optional_params\n        )\n    \n    def create_gist(self, name, data, ext='.txt', optional_params={}, max_timeout=4):\n        \"\"\"\n        This method needs improvement.  I've only been able to get it working\n        by posting anonymously.  When I've added login & token to the post\n        parameters, I get 401s.\n        \"\"\"\n        url = 'http://gist.github.com/gists'\n        sock = httplib2.Http(timeout=max_timeout)\n        \n        request_headers = { 'User-Agent': 'Python-httplib2' }\n        \n        parameters = { 'file_name[gistfile1]': name,\n                       'file_contents[gistfile1]': data,\n                       'file_ext[gistfile1]': ext }\n        parameters.update(optional_params)\n        \n        qs = ''\n        for key, value in parameters.items():\n            qs += '%s=%s&' % (key, quote(value))\n\n        try:\n            headers, response = sock.request(url, \"POST\", qs, headers=request_headers)\n        except socket.timeout:\n            raise ValueError('Socket timed out')\n        \n        status = int(headers.pop('status', 200))\n        if status != 302:\n            raise ValueError('Returned status: %s' % (status))\n        \n        location = headers.pop('location')\n        sock.request(location)\n        \n        matches = re.match('https?:\\/\\/gist\\.github\\.com\\/(\\d+)\\/?', location)\n        return matches.group(1)\n    \n    def get_gist(self, gist_id, max_timeout=4):\n        url = 'http://gist.github.com/%s.txt' % (gist_id)\n        sock = httplib2.Http(timeout=max_timeout)\n        try:\n            headers, response = sock.request(url)\n        except socket.timeout:\n            raise ValueError('Socket timed out')\n        \n        status = int(headers.pop('status', 200))\n        if status != 200:\n            raise ValueError('Returned status: %s' % (status))\n        \n        return response\n\ndef convert_github_timestamp(value):\n    return datetime.datetime(*time.strptime(value[:-6], '%Y-%m-%dT%H:%M:%S')[:6])\n        \nclass GenericAPIObject(object):\n    pieces = []\n    def __init__(self, data):\n        for piece in self.pieces:\n            setattr(self, piece, data.get(piece))\n\nclass GithubAPIUser(GenericAPIObject):\n    pieces = ['id', 'login', 'name', 'company', 'location', \n              'email', 'blog', 'following_count', 'followers_count', \n              'public_gist_count', 'public_repo_count']\n\nclass GithubAPIRepo(GenericAPIObject):\n    pieces = ['watchers', 'owner', 'name', 'description', 'private', 'url',\n              'open_issues', 'fork', 'homepage', 'forks']\n\nclass GithubAPICommit(GenericAPIObject):\n    pieces = ['message', 'parents', 'url', 'author', 'id', 'committed_date',\n              'authored_date', 'tree', 'committer']\n    def __init__(self, data):\n        super(GithubAPICommit, self).__init__(data)\n        self.committed_date = convert_github_timestamp(self.committed_date)\n        self.authored_date = convert_github_timestamp(self.authored_date)\n\nclass GithubAPIObject(GenericAPIObject):\n    pieces = ['name', 'sha', 'mode', 'type']\n\nclass GithubAPIBlob(GenericAPIObject):\n    pieces = ['name', 'size', 'sha', 'mode', 'mime_type', 'data']\n", 
+      "mime_type": "text/plain", 
+      "size": 9943
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "management", 
+      "sha": "", 
+      "path": "github/management", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "__init__.py", 
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", 
+      "path": "github/management/__init__.py", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "text/plain", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "commands", 
+      "sha": "", 
+      "path": "github/management/commands", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "__init__.py", 
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391", 
+      "path": "github/management/commands/__init__.py", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "text/plain", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "fetch_github.py", 
+      "sha": "d3b04b6e13897f5b28ddef10675c7d7e8b6dca4c", 
+      "path": "github/management/commands/fetch_github.py", 
+      "commit": 1, 
+      "data": "import logging\nimport time\nfrom django.core.management.base import BaseCommand, CommandError\nfrom optparse import make_option\n\nfrom github.models import Project\n\nclass Command(BaseCommand):\n    option_list = BaseCommand.option_list + (\n        make_option('--all', action='store_true', dest='fetch_all', default=False,\n            help='Fetch and process all repos.'),\n        make_option('--verbose', action='store_true', dest='verbose', default=False,\n            help='Verbose output.'),\n    )\n    help = \"Fetch and process GitHub projects, downloading commits and blobs for the latest commit.\"\n    args = '[repo name]'\n\n    def handle(self, repo_name='', *args, **options):\n        fetch_all = options.get('fetch_all', False)\n        verbose = options.get('verbose', False)\n        \n        if not repo_name and not fetch_all:\n            raise CommandError('Usage is fetch_github %s' % self.args)\n        elif repo_name:\n            qs = Project.objects.filter(github_repo=repo_name.strip())\n        else:\n            qs = Project.objects.all()\n        \n        logging.basicConfig(\n            filename='github_log.log',\n            level=logging.DEBUG,\n            format='%(asctime)s %(levelname)-8s %(message)s',\n        )\n        \n        if verbose:\n            console = logging.StreamHandler()\n            console.setLevel(logging.INFO)\n            formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')\n            console.setFormatter(formatter)\n            logging.getLogger('').addHandler(console)\n\n        logging.info('Download starting, fetching %d repos' % qs.count())\n        total_start = time.time()\n        \n        for project in qs:\n            start = time.time()\n            logging.info(\"Processing: %s...\" % project.title)\n            commits_processed = project.fetch_github()\n            end = time.time()\n            logging.info(\"%d new commits processed (took %fs)\" % (len(commits_processed), end - start))\n            \n        total_end = time.time()\n        logging.info(\"Finished processing %d repos\" % qs.count())\n        logging.info(\"Took %f seconds\" % (total_end - total_start))\n", 
+      "mime_type": "text/plain", 
+      "size": 2141
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "models.py", 
+      "sha": "d144a5f7b1847ce244952c5bcc1ea34af8ac1139", 
+      "path": "github/models.py", 
+      "commit": 1, 
+      "data": "import os\nimport time\n\nfrom django.conf import settings\nfrom django.core.urlresolvers import reverse\nfrom django.db import models\nfrom django.template.defaultfilters import slugify\nfrom github.libs.github import GithubAPI\n\nGITHUB_LOGIN = getattr(settings, 'GITHUB_LOGIN', 'coleifer')\nGITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')\ngithub_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)\n\nclass Project(models.Model):\n    title = models.CharField(max_length=255)\n    slug = models.SlugField(unique=True, blank=True, editable=False)\n    description = models.TextField()\n    github_repo = models.CharField(max_length=255)\n    created = models.DateTimeField(auto_now_add=True)\n    \n    class Meta:\n        ordering = ('title',)\n    \n    def __unicode__(self):\n        return self.title\n    \n    def save(self, *args, **kwargs):\n        if not self.slug:\n            self.slug = slugify(self.title)\n        super(Project, self).save(*args, **kwargs)\n    \n    def get_absolute_url(self):\n        return reverse('project_detail', args=[self.slug])\n    \n    def get_latest_commit(self):\n        try:\n            return self.commits.all()[0]\n        except IndexError:\n            return None\n    \n    @property\n    def github_url(self):\n        if not GITHUB_LOGIN or not self.github_repo:\n            return ''\n        return 'http://github.com/%s/%s' % (GITHUB_LOGIN, self.github_repo)\n    \n    @property\n    def github_clone_command(self):\n        if not GITHUB_LOGIN or not self.github_repo:\n            return ''\n        return 'git clone git://github.com/%s/%s.git' % (GITHUB_LOGIN, self.github_repo)\n    \n    def fetch_github(self):\n        if not self.github_repo:\n            raise AttributeError(\"No GitHub repo associated with project model\")\n        \n        commits_processed = []\n        \n        commit_list = github_client.get_commits(GITHUB_LOGIN, self.github_repo)\n        if not commit_list:\n            return commits_processed\n        \n        # store all the commits - an API call can be saved here, as all the\n        # necessary commit data is returned by the get_commits() call.\n        for commit in commit_list:\n            instance, created = Commit.objects.get_or_create(project=self, sha=commit.id)\n            if created:\n                instance.created = commit.committed_date\n                instance.message = commit.message\n                instance.name = commit.committer.get('name', '')\n                instance.tree = commit.tree\n                instance.url = commit.url\n                instance.project = self\n                instance.save()\n                commits_processed.append(instance)\n        \n        # download the *latest* tree if new commits exist\n        if len(commits_processed):        \n            commit = commits_processed[0]\n            commit.fetch_blobs()\n        \n        return commits_processed\n    \nclass Commit(models.Model):\n    project = models.ForeignKey(Project, related_name='commits')\n    sha = models.CharField(max_length=255)\n    tree = models.CharField(max_length=255, blank=True)\n    created = models.DateTimeField(blank=True, null=True)\n    name = models.CharField(max_length=255, blank=True)\n    message = models.TextField(blank=True)\n    url = models.URLField()\n    \n    class Meta:\n        ordering = ['-created']\n    \n    def __unicode__(self):\n        return '%s: %s' % (self.project.title, self.message)\n    \n    def get_absolute_url(self):\n        return self.url\n    \n    def fetch_github(self):\n        if not self.project or not self.project.github_repo:\n            raise AttributeError('Required attribute missing: \"github_repo\" on %s' % self.project)\n        commit = github_client.get_commit(GITHUB_LOGIN, self.project.github_repo, self.sha)\n        if commit:\n            self.tree = commit.tree\n            self.created = commit.committed_date\n            self.name = commit.committer.get('name', '')\n            self.message = commit.message\n            self.url = commit.url\n            self.save()\n        return commit\n    \n    def fetch_blobs(self):\n        def process_tree(tree, path=''):\n            objs = github_client.get_tree(GITHUB_LOGIN, self.project.github_repo, tree)\n            for obj in objs:\n                if obj.type == 'tree':\n                    process_tree(obj.sha, path + obj.name + '/')\n                blob, created = Blob.objects.get_or_create(commit=self, name=obj.name, path='%s%s' % (path, obj.name))\n                if created:\n                    fetched = blob.fetch_github(tree, path)\n            return\n        process_tree(self.tree)\n\nclass Blob(models.Model):\n    commit = models.ForeignKey(Commit, related_name='blobs')\n    name = models.CharField(max_length=255)\n    path = models.CharField(max_length=255, editable=False)\n    size = models.IntegerField(default=0)\n    mime_type = models.CharField(max_length=255)\n    data = models.TextField()\n    sha = models.CharField(max_length=255)\n    \n    class Meta:\n        ordering = ['-commit__created', 'commit__project__title', 'path']\n    \n    def __unicode__(self):\n        return '%s (%s)' % (self.path, self.size)\n    \n    def get_absolute_url(self):\n        return reverse('blob_detail', args=[self.commit.project.slug, self.path])\n    \n    @property\n    def download_url(self):\n        return reverse('blob_download', args=[self.commit.project.slug, self.path])\n    \n    def fetch_github(self, tree, path=''):\n        if not self.commit or not self.name:\n            raise AttributeError('Required attribute missing on Blob object')\n        blob = github_client.get_blob(GITHUB_LOGIN, self.commit.project.github_repo, tree, self.name)\n        if blob:\n            self.path = path + blob.name\n            self.size = blob.size\n            self.mime_type = blob.mime_type\n            self.data = blob.data\n            self.sha = blob.sha\n            self.save()\n        return blob\n", 
+      "mime_type": "text/plain", 
+      "size": 5868
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "templates", 
+      "sha": "", 
+      "path": "github/templates", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "base.html", 
+      "sha": "7da49bb3e27a5dee36c26f20e2b49b6af4c0519b", 
+      "path": "github/templates/base.html", 
+      "commit": 1, 
+      "data": "<html>\n<head>\n  <title>{% block title %}{% endblock %}</title>\n</head>\n<body>\n  {% block content %}{% endblock %}\n</body>\n</html>\n", 
+      "mime_type": "text/html", 
+      "size": 130
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "github", 
+      "sha": "", 
+      "path": "github/templates/github", 
+      "commit": 1, 
+      "data": "", 
+      "mime_type": "", 
+      "size": 0
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "base_github.html", 
+      "sha": "94d9808cc760156cb7ab46e326c0267f3406125e", 
+      "path": "github/templates/github/base_github.html", 
+      "commit": 1, 
+      "data": "{% extends \"base.html\" %}\n", 
+      "mime_type": "text/html", 
+      "size": 26
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "blob_detail.html", 
+      "sha": "acee99e53ef8d9599d3be5492e5e15fab0728134", 
+      "path": "github/templates/github/blob_detail.html", 
+      "commit": 1, 
+      "data": "{% extends \"github/base_github.html\" %}\n\n{% block title %}{{ project.title }} {{ object.path }}{% endblock %}\n\n{% block content %}\n  <h1>{{ object.path }}</h1>\n  <pre>\n    {{ object.data }}\n  </pre>\n  <p><a href=\"{{ object.download_url }}\">Downlaod {{ object.name }}</a></p>\n{% endblock %}\n", 
+      "mime_type": "text/html", 
+      "size": 290
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "blob_list.html", 
+      "sha": "95afc7c1e63b20fc9ac8c7ebaa7ccb479924071d", 
+      "path": "github/templates/github/blob_list.html", 
+      "commit": 1, 
+      "data": "{% extends \"github/base_github.html\" %}\n\n{% block title %}{{ project.title }} Source Code{% endblock %}\n\n{% block content %}\n  <h1>{{ project.title }} Source Code</h1>\n  \n  <ul>\n    {% for blob in object_list %}\n      <li><a href=\"{{ blob.get_absolute_url }}\">{{ blob.path }}</a> ({{ blob.size|filesizeformat }})</li>\n    {% endfor %}\n  </ul>\n{% endblock %}\n", 
+      "mime_type": "text/html", 
+      "size": 358
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "commit_list.html", 
+      "sha": "132c29a1701b1c6226178f4cd64c81ba201de188", 
+      "path": "github/templates/github/commit_list.html", 
+      "commit": 1, 
+      "data": "{% extends \"github/base_github.html\" %}\n\n{% block title %}{{ project.title }} Commits{% endblock %}\n\n{% block content %}\n  <h1>{{ project.title }} Commits</h1>\n  \n  <ul>\n    {% for commit in object_list %}\n      <li><a href=\"{{ commit.get_absolute_url }}\">Commit {{ commit.sha|slice:\":8\" }} for {{ commit.project.title }}</a> {{ commit.created|date:\"m/d/Y g:ia\" }}\n        <p>{{ commit.message }}</p>\n      </li>\n    {% endfor %}\n  </ul>\n{% endblock %}\n", 
+      "mime_type": "text/html", 
+      "size": 453
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "project_detail.html", 
+      "sha": "46aa0230e89844e24b1faad5f78fe7f661993ebb", 
+      "path": "github/templates/github/project_detail.html", 
+      "commit": 1, 
+      "data": "{% extends \"github/base_github.html\" %}\n\n{% block title %}{{ project.title }}{% endblock %}\n\n{% block content %}\n  <h1>{{ project.title }}</h1>\n  <p>{{ project.description|linebreaks }}</p>\n\n  <ul>\n    <li><a href=\"{{ project.github_url }}\">{{ project.github_repo }} on GitHub</a></li>\n    <li><a href=\"{% url commit_list project.slug %}\">View commits</a></li>\n    <li><a href=\"{% url blob_list project.slug %}\">Browse source code</a></li>\n  </ul>\n  \n{% endblock %}\n", 
+      "mime_type": "text/html", 
+      "size": 466
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "project_list.html", 
+      "sha": "63635ef6384c5ff49217f6a3e16390c72c8782cd", 
+      "path": "github/templates/github/project_list.html", 
+      "commit": 1, 
+      "data": "{% extends \"github/base_github.html\" %}\n\n{% block title %}Projects{% endblock %}\n\n{% block content %}\n  <h1>Projects</h1>\n  \n  <ul>\n    {% for project in object_list %}\n      <li><a href=\"{{ project.get_absolute_url }}\">{{ project.title }}</a></li>\n    {% endfor %}\n  </ul>\n{% endblock %}\n", 
+      "mime_type": "text/html", 
+      "size": 289
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "urls.py", 
+      "sha": "3ec47408635af7650e2fd0d0be9871459ae2753f", 
+      "path": "github/urls.py", 
+      "commit": 1, 
+      "data": "from django.conf.urls.defaults import *\n\nurlpatterns = patterns('github.views',\n    url(r'^$', \n        view='project_list', \n        name='project_index'\n    ),\n    url(r'^github-hook/(.+)/$',\n        view='github_hook',\n        name='project_github_hook'\n    ),\n    url(r'^([\\w-]+)/$', \n        view='project_detail', \n        name='project_detail'\n    ),\n    url(r'^([\\w-]+)/commits/$',\n        view='commit_list',\n        name='commit_list'\n    ),\n    url(r'^([\\w-]+)/source/$',\n        view='blob_list', \n        name='blob_list'\n    ),\n    url(r'^([\\w-]+)/source/(.+)/download/$', \n        view='blob_download',\n        name='blob_download'\n    ),\n    url(r'^([\\w-]+)/source/(.+)', \n        view='blob_detail',\n        name='blob_detail'\n    ),\n)\n", 
+      "mime_type": "text/plain", 
+      "size": 753
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "views.py", 
+      "sha": "07bc8306e6f8b7327327a6878f669c2da520f0a2", 
+      "path": "github/views.py", 
+      "commit": 1, 
+      "data": "from django.conf import settings\nfrom django.http import HttpResponse, Http404\nfrom django.shortcuts import get_object_or_404, render_to_response\nfrom django.template import RequestContext\nfrom django.views.generic import list_detail\nfrom github.models import Project, Blob\n\nSECRET_KEY = getattr(settings, 'SECRET_KEY', '1337')\n\ndef project_list(request, paginate_by=20, **kwargs):\n    return list_detail.object_list(\n        request,\n        queryset=Project.objects.all(),\n        paginate_by=paginate_by,\n        page=int(request.GET.get('page', 0)),\n        **kwargs\n    )\n\ndef project_detail(request, slug, **kwargs):\n    return list_detail.object_detail(\n        request,\n        queryset=Project.objects.all(),\n        slug=slug,\n        slug_field='slug',\n        template_object_name='project',\n    )\n\ndef commit_list(request, slug, paginate_by=20, template_name='github/commit_list.html', **kwargs):\n    project = get_object_or_404(Project, slug=slug)\n    return list_detail.object_list(\n        request,\n        queryset=project.commits.all(),\n        extra_context={'project': project},\n        template_name=template_name,\n        paginate_by=paginate_by,\n        page=int(request.GET.get('page', 0)),\n        **kwargs\n    )\n\ndef blob_list(request, slug, template_name='github/blob_list.html', **kwargs):\n    project = get_object_or_404(Project, slug=slug)\n    latest_commit = project.get_latest_commit()\n    if not latest_commit:\n        raise Http404\n    return list_detail.object_list(\n        request,\n        queryset=latest_commit.blobs.all(),\n        extra_context={'project': project, 'commit': latest_commit},\n        template_name=template_name,\n        **kwargs\n    )\n\ndef blob_detail(request, slug, path, template_name='github/blob_detail.html', **kwargs):\n    project = get_object_or_404(Project, slug=slug)\n    latest_commit = project.get_latest_commit()\n    blob = get_object_or_404(latest_commit.blobs.all(), path=path)\n    if not latest_commit:\n        raise Http404\n    return render_to_response(template_name, \n            { 'object': blob, 'project': project, 'commit': latest_commit }, \n            context_instance=RequestContext(request))\n\ndef blob_download(request, slug, path):\n    project = get_object_or_404(Project, slug=slug)\n    latest_commit = project.get_latest_commit()\n    blob = get_object_or_404(latest_commit.blobs.all(), path=path)\n    response = HttpResponse(blob.data, blob.mime_type)\n    response['Content-Disposition'] = 'attachment; filename=%s' % (blob.name)\n    return response\n\ndef github_hook(request, secret_key):\n    if secret_key != SECRET_KEY:\n        raise Http404\n    if request.method == 'POST':\n        try:\n            data = simplejson.loads(request.POST['payload'])\n            repo = data['repository']['name']\n            project = Project.objects.get(github_repo=repo)\n            project.fetch_github()\n            return HttpResponse('OK')\n        except:\n            pass\n    return HttpResponse('')\n", 
+      "mime_type": "text/plain", 
+      "size": 2977
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "github.blob", 
+    "fields": {
+      "name": "setup.py", 
+      "sha": "fa905dfdeca88c33c575172e3a946c43a4c71bcf", 
+      "path": "setup.py", 
+      "commit": 1, 
+      "data": "import os\nfrom distutils.core import setup\n\n\ndef fullsplit(path, result=None):\n    \"\"\"\n    Split a pathname into components (the opposite of os.path.join) in a\n    platform-neutral way.\n    \"\"\"\n    if result is None:\n        result = []\n    head, tail = os.path.split(path)\n    if head == \"\":\n        return [tail] + result\n    if head == path:\n        return result\n    return fullsplit(head, [tail] + result)\n\n\npackage_dir = \"github\"\n\n\npackages = []\nfor dirpath, dirnames, filenames in os.walk(package_dir):\n    # ignore dirnames that start with '.'\n    for i, dirname in enumerate(dirnames):\n        if dirname.startswith(\".\"):\n            del dirnames[i]\n    if \"__init__.py\" in filenames:\n        packages.append(\".\".join(fullsplit(dirpath)))\n\n\nsetup(name='django-github',\n    version='0.1',\n    description='Simple GitHub integration with Django',\n    author='Charles Leifer',\n    #author_email='',\n    url='http://github.com/coleifer/django-github/',\n    packages=packages)\n", 
+      "mime_type": "text/plain", 
+      "size": 981
+    }
+  }
+]

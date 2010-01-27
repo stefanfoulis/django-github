@@ -47,7 +47,7 @@ class GithubAPI(object):
         
         request_headers = { 'User-Agent': 'Python-httplib2' }
         
-        parameters.update({ 'username': self.username,
+        parameters.update({ 'login': self.username,
                             'token': self.token })
         
         if http_method == 'POST':
