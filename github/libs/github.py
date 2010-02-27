@@ -47,8 +47,9 @@ class GithubAPI(object):
         
         request_headers = { 'User-Agent': 'Python-httplib2' }
         
-        parameters.update({ 'login': self.username,
-                            'token': self.token })
+        if self.username and self.token:
+            parameters.update({ 'login': self.username,
+                                'token': self.token })
         
         if http_method == 'POST':
             post_data = urlencode(parameters)
@@ -251,7 +252,7 @@ class GenericAPIObject(object):
     pieces = []
     def __init__(self, data):
         for piece in self.pieces:
-            setattr(self, piece, data.get(piece))
+            setattr(self, piece, data.get(piece, ''))
 
 class GithubAPIUser(GenericAPIObject):
     pieces = ['id', 'login', 'name', 'company', 'location', 

@@ -1,5 +1,28 @@
 from django.contrib import admin
-from github.models import Project, Blob, Commit
+from github.models import Project, Blob, Commit, User
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('login', 'name', 'blog')
+    search_fields = ('login', 'name', 'company', 'blog')
+
+    actions = ['fetch_github', 'fetch_repos']
+
+    def fetch_github(self, request, queryset):
+        updated = []
+        for user in queryset:
+            if user.fetch_github():
+                user.save()
+                updated.append(user.login)
+        self.message_user(request, '%s successfully updated.' % ', '.join(updated))
+    fetch_github.short_description = 'Fetch from Github'
+
+    def fetch_repos(self, request, queryset):
+        updated = []
+        for user in queryset:
+            if user.fetch_repos():
+                updated.append(user.login)
+        self.message_user(request, '%s successfully updated.' % ', '.join(updated))
+    fetch_repos.short_description = 'Fetch repos from Github'
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'github_repo',)
@@ -40,6 +63,7 @@ class CommitAdmin(admin.ModelAdmin):
 class BlobAdmin(admin.ModelAdmin):
     pass
 
+admin.site.register(User, UserAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Commit, CommitAdmin)
 admin.site.register(Blob, BlobAdmin)

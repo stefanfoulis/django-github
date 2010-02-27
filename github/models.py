@@ -12,15 +12,68 @@ GITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')
 GITHUB_FETCH_BLOBS = getattr(settings, 'GITHUB_FETCH_BLOBS', True)
 github_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)
 
+
+class User(models.Model):
+    login = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True)
+    company = models.CharField(max_length=200, blank=True)
+    location = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(blank=True)
+    blog = models.URLField(verify_exists=False, blank=True)
+    following_count = models.IntegerField(default=0)
+    followers_count = models.IntegerField(default=0)
+    public_gist_count = models.PositiveSmallIntegerField(default=0)
+    public_repo_count = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ('login',)
+
+    def get_absolute_url(self):
+        return 'http://github.com/%s' % (self.login)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.fetch_github()
+        super(User, self).save(*args, **kwargs)
+   
+    def fetch_github(self):
+        user = github_client.get_user(self.login)
+        if user:
+            self.id = user.id
+            self.name = user.name or ''
+            self.company = user.company or ''
+            self.location = user.location or ''
+            self.email = user.email or ''
+            self.blog = user.blog or ''
+            self.following_count = user.following_count
+            self.followers_count = user.followers_count
+            self.public_gist_count = user.public_gist_count
+            self.public_repo_count = user.public_repo_count
+        return user
+
+    def fetch_repos(self):
+        repos = github_client.get_repos(self.login)
+        if repos:
+            for repo in repos:
+                project, created = Project.objects.get_or_create(
+                        user=self, github_repo=repo.name)
+                project.title = repo.name
+                project.description = repo.description
+                project.save()
+        return repos
+
+
 class Project(models.Model):
+    user = models.ForeignKey(User, null=True)
     title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True, editable=False)
+    slug = models.SlugField(blank=True, editable=False)
     description = models.TextField()
     github_repo = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         ordering = ('title',)
+        unique_together = ('user', 'slug')
     
     def __unicode__(self):
         return self.title
@@ -29,7 +82,15 @@ class Project(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super(Project, self).save(*args, **kwargs)
-    
+   
+    def _repo_required(func):
+        def inner(self, *args, **kwargs):
+            if self.github_repo and self.user:
+                return func(self, *args, **kwargs)
+            else:
+                raise AttributeError('Missing repo or user on project')
+        return inner
+
     def get_absolute_url(self):
         return reverse('project_detail', args=[self.slug])
     
@@ -40,24 +101,22 @@ class Project(models.Model):
             return None
     
     @property
+    @_repo_required
     def github_url(self):
-        if not GITHUB_LOGIN or not self.github_repo:
-            return ''
-        return 'http://github.com/%s/%s' % (GITHUB_LOGIN, self.github_repo)
+        return 'http://github.com/%s/%s' % (self.user.login, self.github_repo)
     
     @property
+    @_repo_required
     def github_clone_command(self):
-        if not GITHUB_LOGIN or not self.github_repo:
+        if not self.user or not self.github_repo:
             return ''
-        return 'git clone git://github.com/%s/%s.git' % (GITHUB_LOGIN, self.github_repo)
+        return 'git clone git://github.com/%s/%s.git' % (self.user.login, self.github_repo)
     
+    @_repo_required
     def fetch_github(self):
-        if not self.github_repo:
-            raise AttributeError("No GitHub repo associated with project model")
-        
         commits_processed = []
         
-        commit_list = github_client.get_commits(GITHUB_LOGIN, self.github_repo)
+        commit_list = github_client.get_commits(self.user.login, self.github_repo)
         if not commit_list:
             return commits_processed
         
@@ -82,6 +141,7 @@ class Project(models.Model):
         
         return commits_processed
     
+
 class Commit(models.Model):
     project = models.ForeignKey(Project, related_name='commits')
     sha = models.CharField(max_length=255)
@@ -103,7 +163,10 @@ class Commit(models.Model):
     def fetch_github(self):
         if not self.project or not self.project.github_repo:
             raise AttributeError('Required attribute missing: "github_repo" on %s' % self.project)
-        commit = github_client.get_commit(GITHUB_LOGIN, self.project.github_repo, self.sha)
+
+        commit = github_client.get_commit(self.project.user.login, 
+                                          self.project.github_repo, 
+                                          self.sha)
         if commit:
             self.tree = commit.tree
             self.created = commit.committed_date
@@ -115,15 +178,19 @@ class Commit(models.Model):
     
     def fetch_blobs(self):
         def process_tree(tree, path=''):
-            objs = github_client.get_tree(GITHUB_LOGIN, self.project.github_repo, tree)
+            objs = github_client.get_tree(self.project.user.login, 
+                                          self.project.github_repo, 
+                                          tree)
             for obj in objs:
                 if obj.type == 'tree':
                     process_tree(obj.sha, path + obj.name + '/')
-                blob, created = Blob.objects.get_or_create(commit=self, name=obj.name, path='%s%s' % (path, obj.name))
+                blob, created = Blob.objects.get_or_create(commit=self, 
+                        name=obj.name, path='%s%s' % (path, obj.name))
                 if created:
                     fetched = blob.fetch_github(tree, path)
             return
         process_tree(self.tree)
+
 
 class Blob(models.Model):
     commit = models.ForeignKey(Commit, related_name='blobs')
@@ -150,7 +217,8 @@ class Blob(models.Model):
     def fetch_github(self, tree, path=''):
         if not self.commit or not self.name:
             raise AttributeError('Required attribute missing on Blob object')
-        blob = github_client.get_blob(GITHUB_LOGIN, self.commit.project.github_repo, tree, self.name)
+        blob = github_client.get_blob(self.commit.project.user.login, 
+                self.commit.project.github_repo, tree, self.name)
         if blob:
             self.path = path + blob.name
             self.size = blob.size
