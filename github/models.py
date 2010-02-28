@@ -135,7 +135,7 @@ class Project(models.Model):
                 commits_processed.append(instance)
         
         # download the *latest* tree if new commits exist
-        if len(commits_processed) and GITHUB_FETCH_BLOBS:        
+        if len(commits_processed) and GITHUB_FETCH_BLOBS:
             commit = commits_processed[0]
             commit.fetch_blobs()
         
