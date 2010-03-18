@@ -5,6 +5,9 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
+
+from pygments import formatters, highlight, lexers
+
 from github.libs.github import GithubAPI
 
 GITHUB_LOGIN = getattr(settings, 'GITHUB_LOGIN', '')
@@ -227,3 +230,68 @@ class Blob(models.Model):
             self.sha = blob.sha
             self.save()
         return blob
+
+
+class Language(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    language_code = models.CharField(max_length=50)
+    mime_type = models.CharField(max_length=100)
+    extension = models.CharField(max_length=10)
+    
+    class Meta:
+        ordering = ('name',)
+    
+    def __unicode__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('language_detail', args=[self.slug])
+        
+    def get_lexer(self):
+        return lexers.get_lexer_by_name(self.language_code)
+
+
+class Gist(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    language = models.ForeignKey(Language)
+    filename = models.CharField(max_length=255, blank=True, default='')
+    description = models.TextField(blank=True)
+    code = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    gist_id = models.CharField(max_length=100, blank=True)
+    
+    class Meta:
+        ordering = ('-created',)
+        
+    def __unicode__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.code = self.code.replace('\t', '    ')
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Gist, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse('snippet_detail', args=[self.slug])
+    
+    def create_gist(self):
+        filename = self.filename or self.title
+        gist_id = github_client.create_gist(
+            filename, 
+            self.code, 
+            self.language.extension)            
+        return gist_id
+    
+    @property
+    def gist_url(self):
+        if not self.gist_id:
+            return False
+        return 'http://gist.github.com/%s' % (self.gist_id)
+    
+    def highlight(self):
+        return highlight(self.code,
+                         self.language.get_lexer(),
+                         formatters.HtmlFormatter())
