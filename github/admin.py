@@ -1,5 +1,5 @@
 from django.contrib import admin
-from github.models import Project, Blob, Commit, User
+from github.models import Project, Blob, Commit, User, Gist, Language
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('login', 'name', 'blog')
@@ -63,6 +63,14 @@ class CommitAdmin(admin.ModelAdmin):
 class BlobAdmin(admin.ModelAdmin):
     pass
 
+class GistAdmin(admin.ModelAdmin):
+    pass
+
+class LanguageAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Gist, GistAdmin)
+admin.site.register(Language, LanguageAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Commit, CommitAdmin)
