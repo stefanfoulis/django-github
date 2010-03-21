@@ -7,6 +7,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 from pygments import formatters, highlight, lexers
+from pygments.lexers import guess_lexer, get_lexer_by_name
 
 from github.libs.github import GithubAPI
 
@@ -31,6 +32,9 @@ class User(models.Model):
     class Meta:
         ordering = ('login',)
 
+    def __unicode__(self):
+        return self.login
+
     def get_absolute_url(self):
         return 'http://github.com/%s' % (self.login)
 
@@ -42,7 +46,6 @@ class User(models.Model):
     def fetch_github(self):
         user = github_client.get_user(self.login)
         if user:
-            self.id = user.id
             self.name = user.name or ''
             self.company = user.company or ''
             self.location = user.location or ''
@@ -230,6 +233,20 @@ class Blob(models.Model):
             self.sha = blob.sha
             self.save()
         return blob
+
+    def highlight(self):
+        try:
+            # Guess a lexer by the contents of the block.
+            lexer = guess_lexer(self.data)
+        except ValueError, e:
+            # Just make it plain text.
+            lexer = get_lexer_by_name('text', stripall=True, encoding='UTF-8')
+        formatter = formatters.HtmlFormatter()
+        return highlight(self.data, lexer, formatter)
+
+    @property
+    def depth(self):
+        return len(self.path.split('/'))
 
 
 class Language(models.Model):
