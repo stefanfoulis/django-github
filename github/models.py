@@ -292,7 +292,7 @@ class Gist(models.Model):
         super(Gist, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse('snippet_detail', args=[self.slug])
+        return reverse('gist_detail', args=[self.slug])
     
     def create_gist(self):
         filename = self.filename or self.title

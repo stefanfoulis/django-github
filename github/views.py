@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.generic import list_detail
-from github.models import Project, Blob
+from github.models import Project, Blob, Gist
 
 GITHUB_KEY = getattr(settings, 'GITHUB_KEY', '1337')
 
@@ -67,6 +67,22 @@ def blob_download(request, project_slug, path):
     response = HttpResponse(blob.data, blob.mime_type)
     response['Content-Disposition'] = 'attachment; filename=%s' % (blob.name)
     return response
+
+def gist_list(request, paginate_by=20, **kwargs):
+    return list_detail.object_list(
+        request,
+        queryset=Gist.objects.all(),
+        paginate_by=paginate_by,
+        page=int(request.GET.get('page', 0)),
+        **kwargs
+    )
+
+def gist_detail(request, gist_slug, **kwargs):
+    return list_detail.object_detail(
+        request,
+        queryset=Gist.objects.all(),
+        slug=gist_slug
+    )
 
 def github_hook(request, secret_key):
     if secret_key != GITHUB_KEY:

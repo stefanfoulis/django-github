@@ -9,6 +9,14 @@ urlpatterns = patterns('github.views',
         view='github_hook',
         name='project_github_hook'
     ),
+    url(r'^gists/$',
+        view='gist_list',
+        name='gist_list'
+    ),
+    url(r'^gists/(?P<gist_slug>[\w-]+)/$', 
+        view='gist_detail', 
+        name='gist_detail'
+    ),
     url(r'^(?P<project_slug>[\w-]+)/$', 
         view='project_detail', 
         name='project_detail'
