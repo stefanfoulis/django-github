@@ -1,3 +1,5 @@
+import simplejson
+
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
@@ -94,6 +96,6 @@ def github_hook(request, secret_key):
             project = Project.objects.get(github_repo=repo)
             project.fetch_github()
             return HttpResponse('OK')
-        except:
+        except project.DoesNotExist:
             pass
     return HttpResponse('')
