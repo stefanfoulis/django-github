@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.views.generic import list_detail
 from github.models import Project, Blob
 
-SECRET_KEY = getattr(settings, 'SECRET_KEY', '1337')
+GITHUB_KEY = getattr(settings, 'GITHUB_KEY', '1337')
 
 def project_list(request, paginate_by=20, **kwargs):
     return list_detail.object_list(
@@ -69,7 +69,7 @@ def blob_download(request, project_slug, path):
     return response
 
 def github_hook(request, secret_key):
-    if secret_key != SECRET_KEY:
+    if secret_key != GITHUB_KEY:
         raise Http404
     if request.method == 'POST':
         try:
