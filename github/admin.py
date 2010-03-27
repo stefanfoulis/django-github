@@ -28,6 +28,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'github_repo',)
     list_filter   = ('created',)
     search_fields = ('title', 'description')
+    prepopulated_fields = {"slug": ("title",)}
     
     actions = ['fetch_github']
     
@@ -64,10 +65,21 @@ class BlobAdmin(admin.ModelAdmin):
     pass
 
 class GistAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("title",)}
+    actions = ['create_gist']
+    
+    def create_gist(self, request, queryset):
+        created = []
+        for gist in queryset:
+            gist.gist_id = gist.create_gist()
+            if gist.gist_id:
+                created.append(gist.title)
+            gist.save()
+        self.message_user(request, "%s successfully created." % ', '.join(created))
+    create_gist.short_description = 'Create gist on GitHub'
 
 class LanguageAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(Gist, GistAdmin)
 admin.site.register(Language, LanguageAdmin)

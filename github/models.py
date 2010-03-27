@@ -289,6 +289,8 @@ class Gist(models.Model):
         self.code = self.code.replace('\t', '    ')
         if not self.slug:
             self.slug = slugify(self.title)
+        if not self.gist_id:
+            self.gist_id = self.create_gist()
         super(Gist, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
