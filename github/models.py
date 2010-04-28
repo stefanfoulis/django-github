@@ -16,6 +16,13 @@ GITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')
 GITHUB_FETCH_BLOBS = getattr(settings, 'GITHUB_FETCH_BLOBS', True)
 github_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)
 
+class UserManager(models.Manager):
+    def get_or_create(self, *args, **kwargs):
+        obj, created = super(UserManager, self).get_or_create(*args, **kwargs)
+        if created:
+            obj.fetch_github()
+            obj.save()
+        return obj, created
 
 class User(models.Model):
     login = models.CharField(max_length=100)
@@ -129,7 +136,8 @@ class Project(models.Model):
         # store all the commits - an API call can be saved here, as all the
         # necessary commit data is returned by the get_commits() call.
         for commit in commit_list:
-            instance, created = Commit.objects.get_or_create(project=self, sha=commit.id)
+            author, created = User.objects.get_or_create(login=commit.author['login'])
+            instance, created = Commit.objects.get_or_create(project=self, sha=commit.id, author=author)
             if created:
                 instance.created = commit.committed_date
                 instance.message = commit.message
@@ -156,6 +164,7 @@ class Commit(models.Model):
     name = models.CharField(max_length=255, blank=True)
     message = models.TextField(blank=True)
     url = models.URLField()
+    author = models.ForeignKey(User, related_name='commits')
     
     class Meta:
         ordering = ['-created']
