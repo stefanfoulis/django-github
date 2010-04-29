@@ -4,6 +4,7 @@ import time
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Count
 from django.template.defaultfilters import slugify
 
 from pygments import formatters, highlight, lexers
@@ -15,14 +16,6 @@ GITHUB_LOGIN = getattr(settings, 'GITHUB_LOGIN', '')
 GITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')
 GITHUB_FETCH_BLOBS = getattr(settings, 'GITHUB_FETCH_BLOBS', True)
 github_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)
-
-class UserManager(models.Manager):
-    def get_or_create(self, *args, **kwargs):
-        obj, created = super(UserManager, self).get_or_create(*args, **kwargs)
-        if created:
-            obj.fetch_github()
-            obj.save()
-        return obj, created
 
 class User(models.Model):
     login = models.CharField(max_length=100)
@@ -136,7 +129,13 @@ class Project(models.Model):
         # store all the commits - an API call can be saved here, as all the
         # necessary commit data is returned by the get_commits() call.
         for commit in commit_list:
-            author, created = User.objects.get_or_create(login=commit.author['login'])
+            author_login = commit.author['login'] or commit.committer['login']
+            if not author_login:
+                author_login = self.user.login
+            try:
+                author = User.objects.get(login__iexact=author_login)
+            except User.DoesNotExist:
+                author = User.objects.create(login=author_login)
             instance, created = Commit.objects.get_or_create(project=self, sha=commit.id, author=author)
             if created:
                 instance.created = commit.committed_date
@@ -154,6 +153,12 @@ class Project(models.Model):
             commit.fetch_blobs()
         
         return commits_processed
+    
+    @_repo_required
+    def contributors(self):
+        authors = self.commits.values('author')
+        annotated = authors.annotate(count=Count('author')).order_by('-count')
+        return map(lambda bit: User.objects.get(pk=bit['author']), annotated)
     
 
 class Commit(models.Model):
