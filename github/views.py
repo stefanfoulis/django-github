@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.generic import list_detail
-from github.models import Project, Blob, Gist
+from github.models import Project, Blob, Gist, User
 
 GITHUB_KEY = getattr(settings, 'GITHUB_KEY', '1337')
 
@@ -84,6 +84,23 @@ def gist_detail(request, gist_slug, **kwargs):
         request,
         queryset=Gist.objects.all(),
         slug=gist_slug
+    )
+
+def user_list(request, paginate_by=20, **kwargs):
+    return list_detail.object_list(
+        request,
+        queryset=User.objects.all(),
+        paginate_by=paginate_by,
+        page=int(request.GET.get('page', 0)),
+        **kwargs
+    )
+
+def user_detail(request, login, **kwargs):
+    return list_detail.object_detail(
+        request,
+        queryset=User.objects.all(),
+        slug=login,
+        slug_field='login',
     )
 
 def github_hook(request, secret_key):
