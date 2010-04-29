@@ -47,7 +47,7 @@ class Migration:
             'size': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         },
         'github.commit': {
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'commits'", 'to': "orm['github.User']"}),
+            'author': ('django.db.models.fields.related.ForeignKey', [], {'null': 'True', 'related_name': "'commits'", 'to': "orm['github.User']"}),
             'created': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'message': ('django.db.models.fields.TextField', [], {'blank': 'True'}),

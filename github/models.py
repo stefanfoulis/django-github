@@ -173,7 +173,7 @@ class Commit(models.Model):
     name = models.CharField(max_length=255, blank=True)
     message = models.TextField(blank=True)
     url = models.URLField()
-    author = models.ForeignKey(GithubUser, related_name='commits')
+    author = models.ForeignKey(GithubUser, related_name='commits', null=True)
     
     class Meta:
         ordering = ['-created']
