@@ -17,7 +17,7 @@ GITHUB_TOKEN = getattr(settings, 'GITHUB_TOKEN', '')
 GITHUB_FETCH_BLOBS = getattr(settings, 'GITHUB_FETCH_BLOBS', True)
 github_client = GithubAPI(GITHUB_LOGIN, GITHUB_TOKEN)
 
-class User(models.Model):
+class GithubUser(models.Model):
     login = models.CharField(max_length=100)
     name = models.CharField(max_length=100, blank=True)
     company = models.CharField(max_length=200, blank=True)
@@ -31,6 +31,7 @@ class User(models.Model):
 
     class Meta:
         ordering = ('login',)
+        db_table = 'github_user'
 
     def __unicode__(self):
         return self.login
@@ -41,7 +42,7 @@ class User(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.fetch_github()
-        super(User, self).save(*args, **kwargs)
+        super(GithubUser, self).save(*args, **kwargs)
    
     def fetch_github(self):
         user = github_client.get_user(self.login)
@@ -73,7 +74,7 @@ class User(models.Model):
 
 
 class Project(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(GithubUser, null=True, blank=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(blank=True)
     description = models.TextField(blank=True)
@@ -136,9 +137,9 @@ class Project(models.Model):
             if not author_login:
                 author_login = self.user.login
             try:
-                author = User.objects.get(login__iexact=author_login)
-            except User.DoesNotExist:
-                author = User.objects.create(login=author_login)
+                author = GithubUser.objects.get(login__iexact=author_login)
+            except GithubUser.DoesNotExist:
+                author = GithubUser.objects.create(login=author_login)
             instance, created = Commit.objects.get_or_create(project=self, sha=commit.id, author=author)
             if created:
                 instance.created = commit.committed_date
@@ -161,7 +162,7 @@ class Project(models.Model):
     def contributors(self):
         authors = self.commits.values('author')
         annotated = authors.annotate(count=Count('author')).order_by('-count')
-        return map(lambda bit: User.objects.get(pk=bit['author']), annotated)
+        return map(lambda bit: GithubUser.objects.get(pk=bit['author']), annotated)
     
 
 class Commit(models.Model):
@@ -172,7 +173,7 @@ class Commit(models.Model):
     name = models.CharField(max_length=255, blank=True)
     message = models.TextField(blank=True)
     url = models.URLField()
-    author = models.ForeignKey(User, related_name='commits')
+    author = models.ForeignKey(GithubUser, related_name='commits')
     
     class Meta:
         ordering = ['-created']

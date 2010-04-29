@@ -1,7 +1,7 @@
 from django.contrib import admin
-from github.models import Project, Blob, Commit, User, Gist, Language
+from github.models import Project, Blob, Commit, GithubUser, Gist, Language
 
-class UserAdmin(admin.ModelAdmin):
+class GithubUserAdmin(admin.ModelAdmin):
     list_display = ('login', 'name', 'blog')
     search_fields = ('login', 'name', 'company', 'blog')
 
@@ -83,7 +83,7 @@ class LanguageAdmin(admin.ModelAdmin):
 
 admin.site.register(Gist, GistAdmin)
 admin.site.register(Language, LanguageAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(GithubUser, GithubUserAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Commit, CommitAdmin)
 admin.site.register(Blob, BlobAdmin)
