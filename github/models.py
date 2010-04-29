@@ -76,7 +76,7 @@ class Project(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(blank=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     github_repo = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     
