@@ -67,6 +67,9 @@ class User(models.Model):
                 project.description = repo.description
                 project.save()
         return repos
+    
+    def contributed_to(self):
+        return Project.objects.filter(commits__author=self).exclude(user=self).distinct()
 
 
 class Project(models.Model):
@@ -98,7 +101,7 @@ class Project(models.Model):
         return inner
 
     def get_absolute_url(self):
-        return reverse('project_detail', args=[self.slug])
+        return reverse('github_project_detail', args=[self.slug])
     
     def get_latest_commit(self):
         try:
@@ -228,11 +231,11 @@ class Blob(models.Model):
         return '%s (%s)' % (self.path, self.size)
     
     def get_absolute_url(self):
-        return reverse('blob_detail', args=[self.commit.project.slug, self.path])
+        return reverse('github_blob_detail', args=[self.commit.project.slug, self.path])
     
     @property
     def download_url(self):
-        return reverse('blob_download', args=[self.commit.project.slug, self.path])
+        return reverse('github_blob_download', args=[self.commit.project.slug, self.path])
     
     def fetch_github(self, tree, path=''):
         if not self.commit or not self.name:
@@ -277,7 +280,7 @@ class Language(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('language_detail', args=[self.slug])
+        return reverse('github_language_detail', args=[self.slug])
         
     def get_lexer(self):
         return lexers.get_lexer_by_name(self.language_code)
@@ -310,7 +313,7 @@ class Gist(models.Model):
     def get_absolute_url(self):
         if self.gist_url:
             return self.gist_url
-        return reverse('gist_detail', args=[self.slug])
+        return reverse('github_gist_detail', args=[self.slug])
     
     def create_gist(self):
         filename = self.filename or self.title
