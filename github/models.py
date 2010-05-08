@@ -69,6 +69,23 @@ class GithubUser(models.Model):
                 project.save()
         return repos
     
+    def fetch_watching(self):
+        repos = github_client.watching(self.login)
+        if repos:
+            for repo in repos:
+                try:
+                    owner = GithubUser.objects.get(login__iexact=repo.owner)
+                except GithubUser.DoesNotExist:
+                    owner = GithubUser.objects.create(login=repo.owner)
+                project, created = Project.objects.get_or_create(
+                    user=owner, github_repo=repo.name)
+                if created:
+                    project.title = repo.name
+                    project.description = repo.description
+                    project.save()
+                project.watchers.add(self)
+        return repos
+    
     def contributed_to(self):
         return Project.objects.filter(commits__author=self).exclude(user=self).distinct()
 
@@ -80,6 +97,8 @@ class Project(models.Model):
     description = models.TextField(blank=True)
     github_repo = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    
+    watchers = models.ManyToManyField(GithubUser, related_name='watched')
     
     class Meta:
         ordering = ('title',)

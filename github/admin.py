@@ -5,7 +5,7 @@ class GithubUserAdmin(admin.ModelAdmin):
     list_display = ('login', 'name', 'blog')
     search_fields = ('login', 'name', 'company', 'blog')
 
-    actions = ['fetch_github', 'fetch_repos']
+    actions = ['fetch_github', 'fetch_repos', 'fetch_watching']
 
     def fetch_github(self, request, queryset):
         updated = []
@@ -23,6 +23,14 @@ class GithubUserAdmin(admin.ModelAdmin):
                 updated.append(user.login)
         self.message_user(request, '%s successfully updated.' % ', '.join(updated))
     fetch_repos.short_description = 'Fetch repos from Github'
+    
+    def fetch_watching(self, request, queryset):
+        updated = []
+        for user in queryset:
+            if user.fetch_watching():
+                updated.append(user.login)
+        self.message_user(request, '%s successfully updated.' % ', '.join(updated))
+    fetch_watching.short_description = 'Fetch repos these users watch'
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'github_repo',)
