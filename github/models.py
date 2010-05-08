@@ -28,6 +28,9 @@ class GithubUser(models.Model):
     followers_count = models.IntegerField(default=0)
     public_gist_count = models.PositiveSmallIntegerField(default=0)
     public_repo_count = models.PositiveSmallIntegerField(default=0)
+    
+    followers = models.ManyToManyField('self', related_name='followers_set')
+    following = models.ManyToManyField('self', related_name='following_set')
 
     class Meta:
         ordering = ('login',)
@@ -85,6 +88,28 @@ class GithubUser(models.Model):
                     project.save()
                 project.watchers.add(self)
         return repos
+    
+    def fetch_followers(self):
+        followers = github_client.followers(self.login)
+        if followers:
+            for follower in followers:
+                try:
+                    follower = GithubUser.objects.get(login__iexact=follower)
+                except GithubUser.DoesNotExist:
+                    follower = GithubUser.objects.create(login=follower)
+                self.followers.add(follower)
+        return followers
+    
+    def fetch_following(self):
+        following = github_client.following(self.login)
+        if following:
+            for follower in following:
+                try:
+                    follower = GithubUser.objects.get(login__iexact=follower)
+                except GithubUser.DoesNotExist:
+                    follower = GithubUser.objects.create(login=follower)
+                self.following.add(follower)
+        return following
     
     def contributed_to(self):
         return Project.objects.filter(commits__author=self).exclude(user=self).distinct()
