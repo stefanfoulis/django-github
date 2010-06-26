@@ -23,6 +23,7 @@ setup(
             'templates/*/*.html',
         ],
     },
+    install_requires = ['httplib2'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',

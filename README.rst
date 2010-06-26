@@ -12,3 +12,8 @@ Installation
 OR
 
 put the ``github`` folder on your python-path
+
+Dependencies
+------------
+
+httplib2
