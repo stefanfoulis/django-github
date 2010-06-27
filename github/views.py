@@ -18,17 +18,17 @@ def project_list(request, paginate_by=20, **kwargs):
         **kwargs
     )
 
-def project_detail(request, project_slug, **kwargs):
+def project_detail(request, login, project_slug, **kwargs):
+    project = get_object_or_404(Project, slug=project_slug, user__login=login)
     return list_detail.object_detail(
         request,
         queryset=Project.objects.all(),
-        slug=project_slug,
-        slug_field='slug',
+        object_id=project.id,
         template_object_name='project',
     )
 
-def commit_list(request, project_slug, paginate_by=20, template_name='github/commit_list.html', **kwargs):
-    project = get_object_or_404(Project, slug=project_slug)
+def commit_list(request, login, project_slug, paginate_by=20, template_name='github/commit_list.html', **kwargs):
+    project = get_object_or_404(Project, slug=project_slug, user__login=login)
     return list_detail.object_list(
         request,
         queryset=project.commits.all(),
@@ -39,8 +39,8 @@ def commit_list(request, project_slug, paginate_by=20, template_name='github/com
         **kwargs
     )
 
-def blob_list(request, project_slug, template_name='github/blob_list.html', **kwargs):
-    project = get_object_or_404(Project, slug=project_slug)
+def blob_list(request, login, project_slug, template_name='github/blob_list.html', **kwargs):
+    project = get_object_or_404(Project, slug=project_slug, user__login=login)
     latest_commit = project.get_latest_commit()
     if not latest_commit:
         raise Http404
@@ -52,8 +52,8 @@ def blob_list(request, project_slug, template_name='github/blob_list.html', **kw
         **kwargs
     )
 
-def blob_detail(request, project_slug, path, template_name='github/blob_detail.html', **kwargs):
-    project = get_object_or_404(Project, slug=project_slug)
+def blob_detail(request, login, project_slug, path, template_name='github/blob_detail.html', **kwargs):
+    project = get_object_or_404(Project, slug=project_slug, user__login=login)
     latest_commit = project.get_latest_commit()
     blob = get_object_or_404(latest_commit.blobs.all(), path=path)
     if not latest_commit:
@@ -62,8 +62,8 @@ def blob_detail(request, project_slug, path, template_name='github/blob_detail.h
             { 'object': blob, 'project': project, 'commit': latest_commit }, 
             context_instance=RequestContext(request))
 
-def blob_download(request, project_slug, path):
-    project = get_object_or_404(Project, slug=project_slug)
+def blob_download(request, login, project_slug, path):
+    project = get_object_or_404(Project, slug=project_slug, user__login=login)
     latest_commit = project.get_latest_commit()
     blob = get_object_or_404(latest_commit.blobs.all(), path=path)
     response = HttpResponse(blob.data, blob.mime_type)

@@ -25,23 +25,23 @@ urlpatterns = patterns('github.views',
         view='user_detail', 
         name='github_user_detail'
     ),
-    url(r'^(?P<project_slug>[\w-]+)/$', 
+    url(r'^(?P<login>[\w-]+)/(?P<project_slug>[\w-]+)/$', 
         view='project_detail', 
         name='github_project_detail'
     ),
-    url(r'^(?P<project_slug>[\w-]+)/commits/$',
+    url(r'^(?P<login>[\w-]+)/(?P<project_slug>[\w-]+)/commits/$',
         view='commit_list',
         name='github_commit_list'
     ),
-    url(r'^(?P<project_slug>[\w-]+)/source/$',
+    url(r'^(?P<login>[\w-]+)/(?P<project_slug>[\w-]+)/source/$',
         view='blob_list', 
         name='github_blob_list'
     ),
-    url(r'^(?P<project_slug>[\w-]+)/source/(?P<path>.+)/download/$', 
+    url(r'^(?P<login>[\w-]+)/(?P<project_slug>[\w-]+)/source/(?P<path>.+)/download/$', 
         view='blob_download',
         name='github_blob_download'
     ),
-    url(r'^(?P<project_slug>[\w-]+)/source/(?P<path>.+)', 
+    url(r'^(?P<login>[\w-]+)/(?P<project_slug>[\w-]+)/source/(?P<path>.+)', 
         view='blob_detail',
         name='github_blob_detail'
     ),

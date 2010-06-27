@@ -146,7 +146,7 @@ class Project(models.Model):
         return inner
 
     def get_absolute_url(self):
-        return reverse('github_project_detail', args=[self.slug])
+        return reverse('github_project_detail', args=[self.user.login, self.slug])
     
     def get_latest_commit(self):
         try:
@@ -276,11 +276,11 @@ class Blob(models.Model):
         return '%s (%s)' % (self.path, self.size)
     
     def get_absolute_url(self):
-        return reverse('github_blob_detail', args=[self.commit.project.slug, self.path])
+        return reverse('github_blob_detail', args=[self.commit.project.user.login, self.commit.project.slug, self.path])
     
     @property
     def download_url(self):
-        return reverse('github_blob_download', args=[self.commit.project.slug, self.path])
+        return reverse('github_blob_download', args=[self.commit.project.user.login, self.commit.project.slug, self.path])
     
     def fetch_github(self, tree, path=''):
         if not self.commit or not self.name:
