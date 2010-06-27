@@ -29,8 +29,8 @@ class GithubUser(models.Model):
     public_gist_count = models.PositiveSmallIntegerField(default=0)
     public_repo_count = models.PositiveSmallIntegerField(default=0)
     
-    followers = models.ManyToManyField('self', related_name='followers_set')
-    following = models.ManyToManyField('self', related_name='following_set')
+    followers = models.ManyToManyField('self', related_name='followers_set', blank=True)
+    following = models.ManyToManyField('self', related_name='following_set', blank=True)
 
     class Meta:
         ordering = ('login',)
@@ -123,7 +123,7 @@ class Project(models.Model):
     github_repo = models.CharField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     
-    watchers = models.ManyToManyField(GithubUser, related_name='watched')
+    watchers = models.ManyToManyField(GithubUser, related_name='watched', blank=True)
     
     class Meta:
         ordering = ('title',)
